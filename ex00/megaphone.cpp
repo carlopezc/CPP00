@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 16:58:54 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/03 17:48:13 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/11/03 17:58:23 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int main(int argc, char **argv)
         }
         i++;
     }
+    std::cout << std::endl;
     return (0);
 }
