@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+        */
+/*   By: carlotalcd <carlotalcd@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/05 17:20:20 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:23:29 by carlotalcd       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
-
-//check_data
-//si check es true comprueba que sea formato 000000000, sin mas ni menos n +34
 
 int    check_phonenumber(std::string s)
 {
@@ -83,7 +80,12 @@ void    add_contact(PhoneBook *phoneBook, int i)
     return ;
 }
 
-void    check_adding(PhoneBook *phoneBook)
+void    search_function(PhoneBook *phoneBook)
+{
+    
+}
+
+void    add_function(PhoneBook *phoneBook)
 {
     int i;
     i = 0;
@@ -108,7 +110,9 @@ void    manage_option(std::string option, PhoneBook *phoneBook)
     if ((option != "ADD" && option != "SEARCH"))
         std::cout << "That option is not available in your phonebook" << std::endl;
     if (option == "ADD")
-        check_adding(phoneBook);
+        add_function(phoneBook);
+    else if (option == "SEARCH")
+        search_function(phoneBook);
     return ;
 }
 
