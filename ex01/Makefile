@@ -6,7 +6,7 @@
 #    By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/03 18:40:50 by carlopez          #+#    #+#              #
-#    Updated: 2025/11/04 16:34:45 by carlopez         ###   ########.fr        #
+#    Updated: 2025/11/05 11:44:45 by carlopez         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,17 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = myPhonebook
-SRC = phonebook.cpp
-OBJ = $(SRC:.c=.o)
-HEADER = phonebook.hpp
+
+SRC = main.cpp phonebook.cpp contact.cpp
+OBJ = $(SRC:.cpp=.o)
+HEADER = phonebook.hpp contact.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c Makefile (HEADER)
+%.o: %.cpp Makefile $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -32,6 +33,6 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean re
+re: fclean all
 
 .PHONY: all clean fclean make re

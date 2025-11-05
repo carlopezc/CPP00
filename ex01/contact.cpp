@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:30:16 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/04 16:34:59 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/11/05 16:45:45 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    Contact::setNickName(std::string nickName)
     this->nickName = nickName;
 }
 
-void    Contact::setPhoneNumber(int phoneNumber)
+void    Contact::setPhoneNumber(std::string phoneNumber)
 {
     this->phoneNumber = phoneNumber;
 }
@@ -50,4 +50,35 @@ void    Contact::setPhoneNumber(int phoneNumber)
 void    Contact::setDarkestSecret(std::string darkestSecret)
 {
     this->darkestSecret = darkestSecret;
+}
+
+int    Contact::getIndex(void)
+{
+    return (index);
+}
+
+std::string    Contact::getFirstName(void)
+{
+    return (firstName);
+}
+
+std::string    Contact::getLastName(void)
+{
+    return (lastName);
+}
+
+std::string    Contact::getNickName(void)
+{
+    return (nickName);
+}
+
+std::string    Contact::getPhoneNumber(void)
+{
+    return (phoneNumber);
+}
+
+std::string    Contact::getDarkestSecret(void)
+{
+    return (darkestSecret);
+    
 }
