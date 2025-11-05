@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/05 17:01:19 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/11/05 17:20:20 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,15 @@ int    check_phonenumber(std::string s)
 void    display_request(std::string data)
 {
     if (data == "name")
-        std::cout << "Contact's name: " << std::endl;
+        std::cout << "➝ Contact's name: " << std::endl;
     else if (data == "last")
-        std::cout << "Contact's last name: " << std::endl;
+        std::cout << "➝ Contact's last name: " << std::endl;
     else if (data == "nick")
-        std::cout << "Contact's nick name: " << std::endl;
+        std::cout << "➝ Contact's nick name: " << std::endl;
     else if (data == "phone")
-        std::cout << "Contact's telephone number: " << std::endl;
+        std::cout << "➝ Contact's telephone number: " << std::endl;
     else if (data == "secret")
-        std::cout << "Contact's darkest secret: " << std::endl;
+        std::cout << "➝ Contact's darkest secret: " << std::endl;
     return ;
 }
 
@@ -64,24 +64,22 @@ std::string    data_loop(std::string data, bool check)
         else
         {
             if (check && check_phonenumber(s))
-                break ;
+                return (data_loop("phone", true));
             return (s);
         }
     }
-    return (NULL);
+    return ("");
 }
 
 void    add_contact(PhoneBook *phoneBook, int i)
 {
-    Contact contact;
-    
+    Contact& contact = phoneBook->getContact(i);
     contact.setIndex(i);
     contact.setFirstName(data_loop("name", false));
     contact.setLastName(data_loop("last", false));
     contact.setNickName(data_loop("nick", false));
     contact.setPhoneNumber(data_loop("phone", true));
     contact.setDarkestSecret(data_loop("secret", false));
-    phoneBook->setContact(i, contact);
     return ;
 }
 
