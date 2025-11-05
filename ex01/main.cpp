@@ -6,7 +6,7 @@
 /*   By: carlopez <carlopez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/05 17:20:20 by carlopez         ###   ########.fr       */
+/*   Updated: 2025/11/05 19:47:29 by carlopez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int    check_phonenumber(std::string s)
     {
         if (!isdigit(s[i]))
         {
-            std::cout << "Please type a correct phone number, in format XXXXXXXXX" << std::endl;
+            std::cout << "Please type a correct phone number, just digits" << std::endl;
             return (1);
         }
         i++;
