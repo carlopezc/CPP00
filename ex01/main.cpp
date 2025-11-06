@@ -6,7 +6,7 @@
 /*   By: carlotalcd <carlotalcd@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/05 19:23:29 by carlotalcd       ###   ########.fr       */
+/*   Updated: 2025/11/05 19:24:58 by carlotalcd       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void    add_contact(PhoneBook *phoneBook, int i)
 
 void    search_function(PhoneBook *phoneBook)
 {
+    
     
 }
 
