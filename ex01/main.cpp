@@ -6,7 +6,7 @@
 /*   By: carlotalcd <carlotalcd@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/06 09:45:40 by carlotalcd       ###   ########.fr       */
+/*   Updated: 2025/11/06 11:37:51 by carlotalcd       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,23 @@ std::string    data_loop(std::string data, bool check)
     {
         if (s.empty())
             std::cout << "Please type something, this field can't be empty" << std::endl;
-        else
+        else if (check && check_phonenumber(s))
         {
-            if (check && check_phonenumber(s))
-                return (data_loop("phone", true));
-            return (s);
+                ;
         }
+        else
+            return (s);
+        display_request(data);
     }
+    
     return ("");
 }
 
 void    add_contact(PhoneBook *phoneBook, int i)
 {
     Contact& contact = phoneBook->getContact(i);
+
+    std::cout << "\n  Welcome to your contact's list  \n" << std::endl;
     contact.setIndex(i);
     contact.setFirstName(data_loop("name", false));
     contact.setLastName(data_loop("last", false));
@@ -87,49 +91,38 @@ int check_id(std::string id, int size)
 
     len = 0;
     while (id[len])
+    {
+        if (!isdigit(id[len]))
+            return (1);
         len++;
+    }
+    if (len > 1)
+        return (1);
     num = id[0] - '0';
-    std::cout << num ;
-    if (len > 1 || num > size)
+    if (num >= size)
         return (1);
     return (0);
 }
 
 std::string format_data(std::string data)
 {
-    int i;
-    int j;
     int spaces;
+    std::string c_spaces;
     std::string new_data;
+    int size;
 
-    i = 0;
-    j = 0;
-    while (data[i])
-        i++;
-    if (i > 8)
+    size = data.length();
+    if (size > 10)
     {
-        i = 0;
-        while (data[i] && data[i + 1])
-        {
-            new_data[j] = data[i];
-            i++;
-            j++;
-        }
-        new_data[j + 1] = '.';
+        new_data = data.substr(0, 9);
+        new_data = new_data + ".";
     }
     else
     {
-        spaces = 10 - i;
-        while (spaces)
-        {
-            new_data[j++] = ' ';
-            spaces--;
-        }
-        i = 0;
-        while (data[i])
-            new_data[j++] = data[i++];
+        spaces = 10 - size;
+        new_data = std::string(spaces, ' ') + data;
     }
-        return (new_data);
+    return (new_data);
 }
 
 void    display_contact(PhoneBook *phoneBook, int id)
@@ -137,7 +130,7 @@ void    display_contact(PhoneBook *phoneBook, int id)
     std::string data;
 
     std::cout << "|     index|first name| last name|  nickname|" << std::endl;
-    std::cout << "|" << phoneBook->getContact(id).getIndex() - '0' << "|";
+    std::cout << "|" << "         " << phoneBook->getContact(id).getIndex() << "|";
     std::cout << format_data(phoneBook->getContact(id).getFirstName()) << "|";
     std::cout << format_data(phoneBook->getContact(id).getLastName()) << "|";
     std::cout << format_data(phoneBook->getContact(id).getNickName()) << "|" << std::endl;
@@ -169,7 +162,7 @@ void    search_function(PhoneBook *phoneBook)
                 return (search_function(phoneBook));
             }
             else
-                return (display_contact(phoneBook, i));
+                return (display_contact(phoneBook, (s[0] - '0')));
         }
     }
     return ;
