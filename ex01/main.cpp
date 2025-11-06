@@ -6,7 +6,7 @@
 /*   By: carlotalcd <carlotalcd@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 17:46:02 by carlopez          #+#    #+#             */
-/*   Updated: 2025/11/05 19:24:58 by carlotalcd       ###   ########.fr       */
+/*   Updated: 2025/11/06 09:45:40 by carlotalcd       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int    check_phonenumber(std::string s)
     {
         if (!isdigit(s[i]))
         {
-            std::cout << "Please type a correct phone number, in format XXXXXXXXX" << std::endl;
+            std::cout << "Please type a correct phone number, just digits" << std::endl;
             return (1);
         }
         i++;
@@ -80,15 +80,106 @@ void    add_contact(PhoneBook *phoneBook, int i)
     return ;
 }
 
+int check_id(std::string id, int size)
+{
+    int len;
+    int num;
+
+    len = 0;
+    while (id[len])
+        len++;
+    num = id[0] - '0';
+    std::cout << num ;
+    if (len > 1 || num > size)
+        return (1);
+    return (0);
+}
+
+std::string format_data(std::string data)
+{
+    int i;
+    int j;
+    int spaces;
+    std::string new_data;
+
+    i = 0;
+    j = 0;
+    while (data[i])
+        i++;
+    if (i > 8)
+    {
+        i = 0;
+        while (data[i] && data[i + 1])
+        {
+            new_data[j] = data[i];
+            i++;
+            j++;
+        }
+        new_data[j + 1] = '.';
+    }
+    else
+    {
+        spaces = 10 - i;
+        while (spaces)
+        {
+            new_data[j++] = ' ';
+            spaces--;
+        }
+        i = 0;
+        while (data[i])
+            new_data[j++] = data[i++];
+    }
+        return (new_data);
+}
+
+void    display_contact(PhoneBook *phoneBook, int id)
+{
+    std::string data;
+
+    std::cout << "|     index|first name| last name|  nickname|" << std::endl;
+    std::cout << "|" << phoneBook->getContact(id).getIndex() - '0' << "|";
+    std::cout << format_data(phoneBook->getContact(id).getFirstName()) << "|";
+    std::cout << format_data(phoneBook->getContact(id).getLastName()) << "|";
+    std::cout << format_data(phoneBook->getContact(id).getNickName()) << "|" << std::endl;
+    return ;
+}
+
 void    search_function(PhoneBook *phoneBook)
 {
+    std::string s;
+    int i;
     
+    i = 0;
+    while (i < 8)
+    {
+        if (phoneBook->getContact(i).getFirstName().empty())
+            break ;
+        i++;
+    }
+    std::cout << "Select a contact id, you have " << i << " contacts" << std::endl;
+    while (std::getline(std::cin, s))
+    {
+        if (s.empty())
+            std::cout << "Please type a valid id" << std::endl;
+        else
+        {
+            if (check_id(s, i))
+            {
+                std::cout << "Please select a valid id, you have " << i << " contacts" << std::endl;
+                return (search_function(phoneBook));
+            }
+            else
+                return (display_contact(phoneBook, i));
+        }
+    }
+    return ;
     
 }
 
 void    add_function(PhoneBook *phoneBook)
 {
     int i;
+    
     i = 0;
     while (i < 8)
     {
